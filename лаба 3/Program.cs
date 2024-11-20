@@ -65,68 +65,90 @@ namespace ConsoleApp1
 делится на четыре без остатка, но если он делится на 100 без остатка, это не високосный
 год. Однако, если он делится без остатка на 400, это високосный год.)
              */
-            Console.WriteLine("високосный ли год");
-            string otvet = Console.ReadLine().ToLower();
-            switch (otvet)
+            Console.WriteLine("введите год потом число");
+            int year = int.Parse(Console.ReadLine());
+            //int dayOfYear1 = int.Parse(Console.ReadLine());
+            int month1 = 0;
+            int day1 = 0;
+            
+            int[] daysInMonth2 = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+            if (year % 4 == 0 && year % 100 == 0) //не високосный
             {
-                case "да":
-                    Console.WriteLine("введите число от 1 до 366");
-                    int dayOfYear1 = int.Parse(Console.ReadLine());
-                    if (dayOfYear1 < 1)
+                int dayOfYear1 = int.Parse(Console.ReadLine());
+                if (dayOfYear1 < 1)
+                {
+                    Console.WriteLine("число не может быть меньше 1");
+                }
+                else if (dayOfYear1 > 365)
+                {
+                    Console.WriteLine("число не может быть больше 365");
+                }
+                for (int i = 0; i < daysInMonth.Length; i++)
+                {
+                    if (dayOfYear1 <= daysInMonth[i])
                     {
-                        Console.WriteLine("число не может быть меньше 1");
+                        month1 = i + 1; // Месяцы начинаются с 1
+                        day1 = dayOfYear1; // Остаток - это день в месяце
+                        break;
                     }
-                    else if (dayOfYear1 > 366)
+                    else
                     {
-                        Console.WriteLine("число не может быть больше 366");
+                        dayOfYear1 -= daysInMonth[i]; // Уменьшаем номер дня на количество дней в текущем месяце
                     }
-                    int[] daysInMonth1 = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-                    int month1 = 0;
-                    int day1 = 0;
-                    for (int i = 0; i < daysInMonth1.Length; i++)
+                }
+                Console.WriteLine($"{day1} {GetMonthName(month1)}.");
+            }
+            else if ((year % 4 == 0)||(year%400 == 0)) //високосный
+            {
+                int dayOfYear1 = int.Parse(Console.ReadLine());
+                if (dayOfYear1 < 1)
+                {
+                    Console.WriteLine("число не может быть меньше 1");
+                }
+                else if (dayOfYear1 > 366)
+                {
+                    Console.WriteLine("число не может быть больше 366");
+                }
+                for (int i = 0; i < daysInMonth.Length; i++)
+                {
+                    if (dayOfYear1 <= daysInMonth2[i])
                     {
-                        if (dayOfYear1 <= daysInMonth1[i])
-                        {
-                            month1 = i + 1; // Месяцы начинаются с 1
-                            day1 = dayOfYear1; // Остаток - это день в месяце
-                            break;
-                        }
-                        else
-                        {
-                            dayOfYear1 -= daysInMonth1[i]; // Уменьшаем номер дня на количество дней в текущем месяце
-                        }
+                        month1 = i + 1; // Месяцы начинаются с 1
+                        day1 = dayOfYear1; // Остаток - это день в месяце
+                        break;
                     }
-                    Console.WriteLine($"{day1} {GetMonthName(month1)}.");
-                    break;
-                case "":
-                    Console.WriteLine("введите число от 1 до 365");
-                    int dayOfYear2 = int.Parse(Console.ReadLine());
-                    if (dayOfYear2 < 1)
+                    else
                     {
-                        Console.WriteLine("число не может быть меньше 1");
+                        dayOfYear1 -= daysInMonth2[i]; // Уменьшаем номер дня на количество дней в текущем месяце
                     }
-                    else if (dayOfYear2 > 365)
+                }
+                Console.WriteLine($"{day1} {GetMonthName(month1)}.");
+            }
+            else
+            {
+                int dayOfYear1 = int.Parse(Console.ReadLine());
+                if (dayOfYear1 < 1)
+                {
+                    Console.WriteLine("число не может быть меньше 1");
+                }
+                else if (dayOfYear1 > 365)
+                {
+                    Console.WriteLine("число не может быть больше 365");
+                }
+                for (int i = 0; i < daysInMonth.Length; i++)
+                {
+                    if (dayOfYear1 <= daysInMonth[i])
                     {
-                        Console.WriteLine("число не может быть больше 365");
+                        month1 = i + 1; // Месяцы начинаются с 1
+                        day1 = dayOfYear1; // Остаток - это день в месяце
+                        break;
                     }
-                    int[] daysInMonth2 = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-                    int month2 = 0;
-                    int day2 = 0;
-                    for (int i = 0; i < daysInMonth2.Length; i++)
+                    else
                     {
-                        if (dayOfYear2 <= daysInMonth2[i])
-                        {
-                            month2 = i + 1; // Месяцы начинаются с 1
-                            day2 = dayOfYear2; // Остаток - это день в месяце
-                            break;
-                        }
-                        else
-                        {
-                            dayOfYear2 -= daysInMonth2[i]; // Уменьшаем номер дня на количество дней в текущем месяце
-                        }
+                        dayOfYear1 -= daysInMonth[i]; // Уменьшаем номер дня на количество дней в текущем месяце
                     }
-                    Console.WriteLine($"{day2} {GetMonthName(month2)}.");
-                    break;
+                }
+                Console.WriteLine($"{day1} {GetMonthName(month1)}.");
             }
             
         }

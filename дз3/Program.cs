@@ -65,11 +65,11 @@ namespace ConsoleApp1
 соответствующей карты. Использовать try-catch-finally.
              */
             Console.WriteLine("2");
-            int k = 0;
+            byte k = 0;
             try
             {
                 Console.Write("Введите номер карты (6 <= k <= 14): ");
-                k = int.Parse(Console.ReadLine());
+                k = byte.Parse(Console.ReadLine());
 
                 if (k < 6 || k > 14)
                 {
@@ -157,7 +157,7 @@ namespace ConsoleApp1
 Использовать enum.
              */
             Console.WriteLine("4");
-            int week = int.Parse(Console.ReadLine());
+            byte week = byte.Parse(Console.ReadLine());
             switch (week)
             {
                 case 1: Console.WriteLine(Week.Mondy); break;
